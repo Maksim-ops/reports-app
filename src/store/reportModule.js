@@ -344,11 +344,8 @@ export const reportModule = {
       if(state.selectedImages && state.selectedImages.length > 0) {
         let formData = new FormData();
         state.selectedImages.map(img => formData.append('images[]',img));
-        await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, {
-          headers: {
-            Authorization: 'Bearer ' + state.jwt
-          }
-        })
+        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, headers)
         .then(res => {
           toast.success("Фото успешно загружены", {timeout: 3000})
           //toast.success(res.data, {timeout: 6000})
@@ -378,7 +375,8 @@ export const reportModule = {
         stageId: state.selectedStage.id,
         stageName: state.selectedStage.text,
         number: state.selectedNumber,
-        hours: state.selectedHours,
+        hoursId: state.selectedHours.id,
+        hoursName: state.selectedHours.text,
         images: state.selectedImages.reduce((res, item) => res + item.name + '|','').slice(0, -1),
         comment: state.comment
       }
@@ -386,11 +384,8 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in report)
         formData.append(key, report[key]);
-      await axios.post(process.env.VUE_APP_API_URL + '/reports.php', formData, {
-        headers: {
-          Authorization: 'Bearer ' + state.jwt
-        }
-      })
+        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      await axios.post(process.env.VUE_APP_API_URL + '/reports.php', formData, headers)
       .then(res => {
         if(res.data) {
           if(res.data.status == 'success') {
@@ -421,11 +416,8 @@ export const reportModule = {
     async inputFormData(state) {
       let formData = new FormData();
       state.selectedImages.map(img => formData.append('images[]',img));
-      await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, {
-        headers: {
-          Authorization: 'Bearer ' + state.jwt
-        }
-      })
+      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, headers)
       .then(res => {
         toast.success(res.data, {timeout: 6000})
         state.selectedImages = []
@@ -444,11 +436,8 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in credentials)
       formData.append(key, credentials[key]);
-        await axios.post(process.env.VUE_APP_API_URL + '/auth.php', formData, {
-          headers: {
-            Authorization: 'Bearer ' + state.jwt
-          }
-        })
+      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        await axios.post(process.env.VUE_APP_API_URL + '/auth.php', formData, headers)
         .then(res => {
           state.jwt = res.data
           this.$router.push('/')
