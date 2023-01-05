@@ -1,14 +1,8 @@
 import { createStore } from 'vuex'
+import { reportModule } from '@/store/reportModule'
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    report: reportModule
   }
 })
