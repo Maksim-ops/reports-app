@@ -359,8 +359,8 @@ export const reportModule = {
 
       const report = {
         userId: state.userId,
-        userName: state.userName,
-        date: state.selectedDate,
+        username: state.username,
+        eventDate: state.selectedDate,
         regionId: parseInt(state.selectedRegion.value),
         regionName: state.selectedRegion.label,
         settlementId: parseInt(state.selectedSettlement.value),
