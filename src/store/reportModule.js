@@ -359,6 +359,7 @@ export const reportModule = {
 
       const report = {
         userId: state.userId,
+        userName: state.userName,
         date: state.selectedDate,
         regionId: parseInt(state.selectedRegion.value),
         regionName: state.selectedRegion.label,
@@ -380,7 +381,6 @@ export const reportModule = {
         images: state.selectedImages.reduce((res, item) => res + item.name + '|','').slice(0, -1),
         comment: state.comment
       }
-      console.log('report.images', report.images)
       // transform object to php format
       const formData = new FormData();
       for(var key in report)
