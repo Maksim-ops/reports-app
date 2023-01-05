@@ -1,6 +1,6 @@
 <template>
   <div class="review">
-    <h2>Просмотр</h2>
+    <h2>Проверка</h2>
     <ReviewItem
       :header="'Дата'"
       :value="$store.state.report.selectedDate"
