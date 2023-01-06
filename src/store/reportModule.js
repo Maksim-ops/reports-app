@@ -344,7 +344,7 @@ export const reportModule = {
       if(state.selectedImages && state.selectedImages.length > 0) {
         let formData = new FormData();
         state.selectedImages.map(img => formData.append('images[]',img));
-        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, headers)
         .then(res => {
           toast.success("Фото успешно загружены", {timeout: 3000})
@@ -385,7 +385,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in report)
         formData.append(key, report[key]);
-        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       await axios.post(process.env.VUE_APP_API_URL + '/reports.php', formData, headers)
       .then(res => {
         if(res.data) {
@@ -417,7 +417,7 @@ export const reportModule = {
     async inputFormData(state) {
       let formData = new FormData();
       state.selectedImages.map(img => formData.append('images[]',img));
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, headers)
       .then(res => {
         toast.success(res.data, {timeout: 6000})
@@ -437,7 +437,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in credentials)
       formData.append(key, credentials[key]);
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.post(process.env.VUE_APP_API_URL + '/auth.php', formData, headers)
         .then(res => {
           state.jwt = res.data
@@ -463,7 +463,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in state.newInstitution)
       formData.append(key, state.newInstitution[key]);
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       return await axios.post(process.env.VUE_APP_API_URL + '/institutions.php', formData, headers)
       .then(res => {
         if(res.data) {
@@ -487,7 +487,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in state.newSettlement)
       formData.append(key, state.newSettlement[key]);
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       return await axios.post(process.env.VUE_APP_API_URL + '/settlements.php', formData, headers)
       .then(res => {
         if(res.data) {
@@ -511,7 +511,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in state.newGroup)
       formData.append(key, state.newGroup[key]);
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       return await axios.post(process.env.VUE_APP_API_URL + '/groups.php', formData, headers)
       .then(res => {
         if(res.data) {
@@ -539,7 +539,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in state.newTheme)
       formData.append(key, state.newTheme[key]);
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       return await axios.post(process.env.VUE_APP_API_URL + '/themes.php', formData, headers)
       .then(res => {
         if(res.data) {
@@ -562,7 +562,7 @@ export const reportModule = {
       });
     },
     async fetchCourses({state}) {
-        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/courses.php', headers)
         .then(res => {
           state.courses = res.data.map(({id, name, ...rest}) => ({...rest, value: id, label: name}));
@@ -572,7 +572,7 @@ export const reportModule = {
         });
     },
     async fetchThemes({state}) {
-        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/themes.php', headers)
         .then(res => {
           const themes = res.data.map(({id, name, ...rest}) => ({value: id, label: name, ...rest}))
@@ -604,7 +604,7 @@ export const reportModule = {
         });
     },
     async fetchRegions({state}) {
-        const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+        const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/regions.php', headers)
         .then(res => {
           state.regions = res.data.map(({id, name, ...rest}) => ({...rest, value: id, label: name}));
@@ -613,7 +613,7 @@ export const reportModule = {
         });
     },
     async fetchSettlements({state}) {
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/settlements.php', headers)
         .then(res => {
           state.settlements = res.data.map(({id, name, ...rest}) => ({value: id, label: name, ...rest}))
@@ -643,7 +643,7 @@ export const reportModule = {
         });
     },
     async fetchVolunteers({state}) {
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/volunteers.php', headers)
         .then(res => {
           state.volunteers = res.data.map(({id, lastname, firstname, middlename, ...rest}) => ({value: id, label: lastname + ' ' + firstname + ' ' + middlename, ...rest}))
@@ -656,7 +656,7 @@ export const reportModule = {
         });
     },
     async fetchInstitutions({state}) {
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/institutions.php', headers)
         .then(res => {
           state.institutions = res.data.map(({id, name, ...rest}) => ({value: id, label: name, ...rest}))
@@ -669,7 +669,7 @@ export const reportModule = {
         });
     },
     async fetchGroups({state}) {
-      const headers = { headers: { Authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.get(process.env.VUE_APP_API_URL + '/groups.php', headers)
         .then(res => {
           state.groups = res.data.map(({id, name, ...rest}) => ({value: id, label: name, ...rest}))
