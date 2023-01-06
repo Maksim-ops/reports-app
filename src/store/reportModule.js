@@ -347,6 +347,7 @@ export const reportModule = {
         const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, headers)
         .then(res => {
+          console.log('upload', res)
           toast.success("Фото успешно загружены", {timeout: 3000})
           //toast.success(res.data, {timeout: 6000})
           state.message = res.data
