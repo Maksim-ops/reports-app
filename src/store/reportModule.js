@@ -385,7 +385,7 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in report)
         formData.append(key, report[key]);
-        const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
+      const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
       await axios.post(process.env.VUE_APP_API_URL + '/reports.php', formData, headers)
       .then(res => {
         if(res.data) {
