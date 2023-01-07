@@ -111,6 +111,6 @@ router.beforeEach(async (to) => {
   else {
     return
   }
-});
+})
 
 export default router

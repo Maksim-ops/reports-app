@@ -342,20 +342,20 @@ export const reportModule = {
       }
 
       if(state.selectedImages && state.selectedImages.length > 0) {
-        let formData = new FormData();
-        state.selectedImages.map(img => formData.append('images[]',img));
+        let formData = new FormData()
+        state.selectedImages.map(img => formData.append('images[]', img))
         const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.post(process.env.VUE_APP_API_URL + '/upload.php', formData, headers)
         .then(res => {
-          console.log('upload', res)
-          toast.success("Фото успешно загружены", {timeout: 3000})
-          //toast.success(res.data, {timeout: 6000})
-          state.message = res.data
+          if(res.data.status == 'ok')
+            toast.success(res.data.message, {timeout: 3000})
+          else
+            toast.warning(res.data.message, {timeout: 6000})
         }).catch(err => {
           console.log(err)
-          toast.error('Фото не удалось загрузить ' + err, {timeout: 8000})
+          toast.error('Ошибка загрузки фото ' + err, {timeout: 8000})
           state.message = '' + err
-        });
+        })
       }
 
       const report = {
@@ -430,7 +430,7 @@ export const reportModule = {
         state.message = '' + err
       });
     },
-    async login(state) {
+    /*async login(state) {
       const credentials = {
         username: state.username,
         password: state.password
@@ -438,16 +438,17 @@ export const reportModule = {
       const formData = new FormData();
       for(var key in credentials)
       formData.append(key, credentials[key]);
+      
       const headers = { headers: { authorization: 'Bearer ' + state.jwt } }
         await axios.post(process.env.VUE_APP_API_URL + '/auth.php', formData, headers)
         .then(res => {
           state.jwt = res.data
-          this.$router.push('/')
+          //this.$router.push('/')
         }).catch(err => {
           console.log(err)
           toast.error('' + err, {timeout: 8000})
         });
-    },
+    }*/
   },
   actions: {
     loadData({state, dispatch }) {

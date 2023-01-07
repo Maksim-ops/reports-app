@@ -63,7 +63,6 @@ export default {
       //this.password = submitEvent.target.elements.password.value;
       const credentials = {
         username: this.$store.state.report.username,
-        //password: "pass"
         password: this.password
       }
       const formData = new FormData()
